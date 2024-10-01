@@ -2,31 +2,26 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const GrowBusinessScreen = () => {
+const BusinessGrowthUI = () => {
   return (
     <LinearGradient
       colors={['#C7F4F7', '#D1F4F6', '#E5F4F5', '#37D6F8', '#00CCF9']}
-      locations={[0.0003, 0.3021, 0.8542, 0.965, 1]}
       style={styles.container}
     >
-      <View style={styles.content}>
-        <View style={styles.circle} />
-        <Text style={styles.title}>GROW{'\n'}YOUR BUSINESS</Text>
-        <Text style={styles.subtitle}>
-          We will help you to grow your business using online server
-        </Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>LOGIN</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>SIGN UP</Text>
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity>
-          <Text style={styles.link}>HOW WE WORK?</Text>
+      <View style={styles.circle} />
+      <Text style={styles.title}>GROW{'\n'}YOUR BUSINESS</Text>
+      <Text style={styles.subtitle}>
+        We will help you to grow your business using online server
+      </Text>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>LOGIN</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>SIGN UP</Text>
         </TouchableOpacity>
       </View>
+      <Text style={styles.footer}>HOW WE WORK?</Text>
     </LinearGradient>
   );
 };
@@ -34,54 +29,65 @@ const GrowBusinessScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  content: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
   },
   circle: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 142,
+    height: 142,
+    borderRadius: 71,
     borderWidth: 15,
-    borderColor: 'black',
-    marginBottom: 40,
+    borderColor: '#000000',
+    marginBottom: 66,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: 'Roboto',
+    fontWeight: '700',
+    fontSize: 25,
+    lineHeight: 29,
     textAlign: 'center',
-    marginBottom: 20,
+    color: '#000000',
+    marginBottom: 50,
   },
   subtitle: {
-    fontSize: 14,
+    fontFamily: 'Roboto',
+    fontWeight: '700',
+    fontSize: 15,
+    lineHeight: 18,
     textAlign: 'center',
-    marginBottom: 40,
+    color: '#000000',
+    marginBottom: 50,
+    paddingHorizontal: 20,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    marginBottom: 20,
+    paddingHorizontal: 20,
+    marginBottom: 21,
   },
   button: {
     backgroundColor: '#E3C000',
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    borderRadius: 10,
+    width: 125,
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonText: {
-    color: 'black',
-    fontWeight: 'bold',
+    fontFamily: 'Roboto',
+    fontWeight: '700',
+    fontSize: 18,
+    color: '#000000',
   },
-  link: {
-    color: 'black',
-    textDecorationLine: 'underline',
+  footer: {
+    fontFamily: 'Roboto',
+    fontWeight: '700',
+    fontSize: 18,
+    lineHeight: 21,
+    textAlign: 'center',
+    color: '#000000',
   },
 });
 
-export default GrowBusinessScreen;
+export default BusinessGrowthUI;

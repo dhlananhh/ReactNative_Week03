@@ -1,139 +1,100 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import React from 'react';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
-const RegisterScreen = () => {
-  const [gender, setGender] = useState('male');
-  const [showPassword, setShowPassword] = useState(false);
-
+const ForgotPasswordScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>REGISTER</Text>
-      
-      <TextInput style={styles.input} placeholder="Name" />
-      <TextInput style={styles.input} placeholder="Phone" keyboardType="phone-pad" />
-      <TextInput style={styles.input} placeholder="Email" keyboardType="email-address" />
-      
-      <View style={styles.passwordContainer}>
-        <TextInput
-          style={styles.passwordInput}
-          placeholder="Password"
-          secureTextEntry={!showPassword}
+    <LinearGradient
+      colors={['#C7F4F7', '#D1F4F6', '#E5F4F5', '#00CCF9']}
+      style={styles.container}
+    >
+      <Image
+        source={require('./assets/lock-icon.png')}
+        style={styles.lockIcon}
+      />
+      <Text style={styles.title}>FORGET PASSWORD</Text>
+      <Text style={styles.description}>
+        Provide your account's email for which you want to reset your password
+      </Text>
+      <View style={styles.inputContainer}>
+        <Image
+          source={require('./assets/mail-icon.png')}
+          style={styles.mailIcon}
         />
-        <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
-          <Icon name={showPassword ? 'eye' : 'eye-off'} size={24} color="#000" />
-        </TouchableOpacity>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          placeholderTextColor="#000000"
+        />
       </View>
-      
-      <TextInput style={styles.input} placeholder="Birthday" />
-      
-      <View style={styles.genderContainer}>
-        <TouchableOpacity 
-          style={[styles.radioButton, gender === 'male' && styles.radioButtonSelected]} 
-          onPress={() => setGender('male')}
-        >
-          <View style={styles.radioCircle}>
-            {gender === 'male' && <View style={styles.radioCircleSelected} />}
-          </View>
-          <Text>Male</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={[styles.radioButton, gender === 'female' && styles.radioButtonSelected]} 
-          onPress={() => setGender('female')}
-        >
-          <View style={styles.radioCircle}>
-            {gender === 'female' && <View style={styles.radioCircleSelected} />}
-          </View>
-          <Text>Female</Text>
-        </TouchableOpacity>
-      </View>
-      
-      <TouchableOpacity style={styles.registerButton}>
-        <Text style={styles.registerButtonText}>REGISTER</Text>
+      <TouchableOpacity style={styles.nextButton}>
+        <Text style={styles.nextButtonText}>NEXT</Text>
       </TouchableOpacity>
-      
-      <Text style={styles.termsText}>When you agree to terms and conditions</Text>
-    </View>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e0f2e9',
-    padding: 20,
+    alignItems: 'center',
     justifyContent: 'center',
+    padding: 30,
+  },
+  lockIcon: {
+    width: 105,
+    height: 117,
+    marginBottom: 37,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1e3d2f',
-    marginBottom: 20,
-    alignSelf: 'center',
+    fontFamily: 'Roboto',
+    fontWeight: '700',
+    fontSize: 25,
+    lineHeight: 29,
+    textAlign: 'center',
+    color: '#000000',
+    marginBottom: 32,
+  },
+  description: {
+    fontFamily: 'Roboto',
+    fontWeight: '700',
+    fontSize: 15,
+    lineHeight: 18,
+    textAlign: 'center',
+    color: '#000000',
+    marginBottom: 10,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#C4C4C4',
+    width: '100%',
+    height: 45,
+    marginBottom: 43,
+  },
+  mailIcon: {
+    width: 48,
+    height: 45,
   },
   input: {
-    backgroundColor: '#c2e3d4',
-    padding: 15,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  passwordContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#c2e3d4',
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  passwordInput: {
     flex: 1,
-    padding: 15,
+    fontFamily: 'Roboto',
+    fontSize: 15,
+    color: '#000000',
   },
-  eyeIcon: {
+  nextButton: {
+    backgroundColor: '#E3C000',
+    width: '100%',
+    height: 45,
     justifyContent: 'center',
-    padding: 10,
-  },
-  genderContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginTop: 20,
-    marginBottom: 20,
-    marginLeft: 30,
-  },
-  radioButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 50,
-  },
-  radioCircle: {
-    height: 20,
-    width: 20,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 10,
-  },
-  radioCircleSelected: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#000',
-  },
-  registerButton: {
-    backgroundColor: '#e74c3c',
-    padding: 15,
-    borderRadius: 5,
     alignItems: 'center',
   },
-  registerButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  termsText: {
-    textAlign: 'center',
-    marginTop: 10,
-    color: '#555',
+  nextButtonText: {
+    fontFamily: 'Roboto',
+    fontWeight: '700',
+    fontSize: 18,
+    color: '#000000',
   },
 });
 
-export default RegisterScreen;
+export default ForgotPasswordScreen;
