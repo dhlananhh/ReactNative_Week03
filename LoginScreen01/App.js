@@ -1,145 +1,217 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 const LoginScreen = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>LOGIN</Text>
-      
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#888"
-      />
-      
-      <View style={styles.passwordContainer}>
-        <TextInput
-          style={styles.passwordInput}
-          placeholder="Password"
-          placeholderTextColor="#888"
-          secureTextEntry={!showPassword}
-        />
-        <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
-          <Icon name={showPassword ? 'eye' : 'eye-off'} size={24} color="#000" />
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.headerTitle}>LOGIN</Text>
+        
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            placeholderTextColor="#000000"
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={!showPassword}
+            placeholderTextColor="#000000"
+          />
+          <TouchableOpacity 
+            style={styles.eyeIconContainer}
+            onPress={() => setShowPassword(!showPassword)}
+          >
+            <Icon 
+              name={showPassword ? 'eye' : 'eye-off'} 
+              size={24} 
+              color="#000" 
+            />
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity style={styles.loginButton}>
+          <Text style={styles.loginButtonText}>LOGIN</Text>
         </TouchableOpacity>
+
+        <Text style={styles.termsText}>
+          When you agree to terms and conditions
+        </Text>
+
+        <Text style={styles.forgotPasswordText}>For got your password?</Text>
+
+        <Text style={styles.orLoginText}>Or login with</Text>
+
+        <View style={styles.socialContainer}>
+          <TouchableOpacity style={[styles.socialButton, styles.facebookButton]}>
+            <Image 
+              style={styles.socialIcon}
+              resizeMode='cover'
+              source={require('./assets/facebook.png')}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={[styles.socialButton, styles.zaloButton]}>
+            <Image 
+              style={styles.socialIcon}
+              resizeMode='cover'
+              source={require('./assets/zalo.png')}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={[styles.socialButton, styles.googleButton]}>
+            <Image 
+              style={styles.socialIcon}
+              resizeMode='cover'
+              source={require('./assets/google.png')}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
-      
-      <TouchableOpacity style={styles.loginButton}>
-        <Text style={styles.loginButtonText}>LOGIN</Text>
-      </TouchableOpacity>
-      
-      <Text style={styles.termsText}>When you agree to terms and conditions</Text>
-      
-      <Text style={styles.forgotPassword}>Forgot your password?</Text>
-      
-      <Text style={styles.orLoginWith}>Or login with</Text>
-      
-      <View style={styles.socialLoginContainer}>
-        <TouchableOpacity style={[styles.socialButton, { backgroundColor: '#3b5998' }]}>
-          <Text style={styles.socialButtonText}>f</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.socialButton, { backgroundColor: '#00acee' }]}>
-          <Text style={styles.socialButtonText}>Z</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.socialButton, { backgroundColor: '#fff' }]}>
-          <Text style={[styles.socialButtonText, { color: '#000' }]}>G</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
-
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'rgba(49, 170, 82, 0.19)',
+  },
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#e0f2e9',
-    justifyContent: 'center',
+    paddingHorizontal: 15,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  headerTitle: {
+    fontSize: 25,
+    fontWeight: '700',
     textAlign: 'center',
+    marginTop: 40,
+    marginBottom: 60,
+    color: '#000000',
+  },
+  inputContainer: {
+    marginBottom: 20,
+    position: 'relative',
+    height: 54,
   },
   input: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  passwordContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    borderRadius: 5,
-    marginBottom: 20,
-  },
-  passwordInput: {
     flex: 1,
-    padding: 15,
+    backgroundColor: 'rgba(196, 196, 196, 0.3)',
+    borderWidth: 1,
+    borderColor: '#F2F2F2',
+    paddingHorizontal: 20,
+    fontSize: 18,
+    color: '#000000',
+    borderRadius: 0,
   },
-  eyeIcon: {
-    padding: 10 
+  eyeIconContainer: {
+    position: 'absolute',
+    right: 15,
+    top: '50%',
+    transform: [{ translateY: -12 }],
   },
   loginButton: {
-    backgroundColor: "#e74c3c",
-    padding: 15,
-    borderRadius: 5,
+    backgroundColor: '#E53935',
+    height: 45,
+    justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 2,
+    marginTop: 40,
   },
   loginButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 20,
+    fontWeight: '700',
   },
   termsText: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: 16,
     textAlign: 'center',
     marginTop: 20,
-    marginBottom: 20,
-    color: '#888',
-  },
-  forgotPassword: {
-    textAlign: 'center',
-    color: '#5d25fa',
-    marginBottom: 20,
-  },
-  orLoginWith: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: '400',
     fontSize: 14,
-    lineHeight: 16,
-    textAlign: 'center',
-    marginBottom: 20,
-    color: '#888',
+    color: '#000000',
   },
-  socialLoginContainer: {
+  forgotPasswordText: {
+    color: '#5D25FA',
+    textAlign: 'center',
+    marginTop: 15,
+    fontSize: 14,
+  },
+  orLoginText: {
+    textAlign: 'center',
+    marginTop: 15,
+    marginBottom: 20,
+    fontSize: 14,
+    color: '#000000',
+  },
+  socialContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    paddingHorizontal: 4,
   },
   socialButton: {
-    width: 80,
-    height: 40,
+    width: 110,
+    height: 45,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 15,
-    borderRadius: 5,
-    marginHorizontal: 5,
+    borderRadius: 2,
   },
-  socialButtonText: {
-    color: '#fff',
-    fontSize: 20,
+  socialIcon: {
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+  },
+  facebookButton: {
+    backgroundColor: '#25479B',
+    justifyContent: 'center',
+  },
+  zaloButton: {
+    backgroundColor: '#0F8EE0',
+    justifyContent: 'center',
+  },
+  googleButton: {
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#0680F1',
+  },
+  facebookText: {
+    color: '#FFFFFF',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  zaloText: {
+    color: '#FFFFFF',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  googleText: {
+    color: '#000000',
+    fontSize: 30,
     fontWeight: 'bold',
   },
 });
-
 
 export default LoginScreen;
